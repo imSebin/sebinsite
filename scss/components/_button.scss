@@ -1,0 +1,49 @@
+
+@use '../custom' as *;
+@use '../components/mixins' as *;
+
+.btn-rounded {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+  
+  position: relative;
+  padding: 0.4rem 2.6rem 0.4rem 1.0rem;
+  font-weight: 600;
+  font-family:'Segoe UI';
+  font-weight: 700;
+  margin: 0;
+  border: 0.1rem solid rgba($white, 0.6);
+  background-color: $white;
+
+  span {
+    position: absolute;
+    background-color: $primary;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+
+    i {
+      color: $white;
+      font-size: 0.7rem;
+    }
+  }
+
+  &:hover {
+    @include gradient;
+    color: $white;
+
+    span {
+      background-color: rgba($black, 0.4);
+    }
+  }
+}
+
+.btn-squared {
+  position: relative;
+  padding: 0.4rem 2.6rem 0.4rem 1.0rem;
+
+}
