@@ -5,8 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sebin's Website</title>
+
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
+
+  <script src="assets/js/bootstrap.bundle.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
   <!-- START NAVBAR -->
@@ -42,8 +46,14 @@
       <div class="row align-items-center text-white">
         <div class="col-md-6 intros">
           <h1 class="display-2">
-            <span class="display-2--intro">I'm Sebin</span>
-            <span class="display-2--description">I studied AI and I like making cool things with it. Check out the Projects tab to see more!</span>
+            <div class="display-2--intro">I'm Sebin</div>
+            <div class="animated-heading">
+              <h1><span id="words">Welcome!</span></h1>
+            </div>
+            <span class="display-2--description">
+              I studied AI and I like making cool things with it.<br>
+              Explore the site to see interesting projects!
+            </span>
           </h1>
           <button type="button" class="rounded-pill btn-rounded">
             Click For More Info!
@@ -57,6 +67,27 @@
     </div>
   </section>
 
-  <script src="assets/js/bootstrap.bundle.js"></script>
+  <!-- HTML TEXT CHANGE SCRIPT -->
+  <script type="text/javascript">
+    (function () {
+      var words = [
+        "Welcome!",
+        "Bienvenidos!",
+        "환영해요!",
+        "Willkommen!",
+        "ようこそ!",
+        "Bienvenue!",
+        "Добро пожаловать!",
+        "Bem-vindos!",
+        "歡迎光臨!"
+      ],
+      i = 0;
+      setInterval(function() {
+        $('#words').fadeOut(function() {
+          $(this).html(words[(i = (i + 1) % words.length)]).fadeIn();
+        });
+      }, 3000)
+    })();
+  </script>
 </body>
 </html>
