@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,7 @@
   <script src="assets/vendors/js/glightbox.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
   <!-- START NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
@@ -23,7 +25,8 @@
       <a class="navbar-brand" href="#">
         <img src="images/logo.png" alt="logo image">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -84,7 +87,11 @@
         </div>
       </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,122.7C384,128,480,96,576,96C672,96,768,128,864,138.7C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#ffffff" fill-opacity="1"
+        d="M0,32L48,53.3C96,75,192,117,288,122.7C384,128,480,96,576,96C672,96,768,128,864,138.7C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
   </section>
 
   <!-- HTML VIDEO INSERT -->
@@ -99,25 +106,26 @@
 
   <!-- HTML TEXT CHANGE SCRIPT -->
   <script type="text/javascript">
-    (function () {
-      var words = [
-        "Welcome!",
-        "Bienvenidos!",
-        "환영해요!",
-        "Willkommen!",
-        "ようこそ!",
-        "Bienvenue!",
-        "Добро пожаловать!",
-        "Bem-vindos!",
-        "歡迎光臨!"
-      ],
-      i = 0;
-      setInterval(function() {
-        $('#words').fadeOut(function() {
-          $(this).html(words[(i = (i + 1) % words.length)]).fadeIn();
-        });
-      }, 3000)
-    })();
+      (function () {
+        var words = [
+          "Welcome!",
+          "Bienvenidos!",
+          "환영해요!",
+          "Willkommen!",
+          "ようこそ!",
+          "Bienvenue!",
+          "Добро пожаловать!",
+          "Bem-vindos!",
+          "歡迎光臨!"
+        ],
+          i = 0;
+        setInterval(function () {
+          $('#words').fadeOut(function () {
+            $(this).html(words[(i = (i + 1) % words.length)]).fadeIn();
+          });
+        }, 3000)
+      })();
   </script>
 </body>
+
 </html>

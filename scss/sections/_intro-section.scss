@@ -1,4 +1,3 @@
-
 @use '../custom' as *;
 @use '../components/mixins' as *;
 
@@ -12,7 +11,9 @@
 .intros {
   .video-box {
     position: relative;
+
     a {
+
       // @include absCenter;
       span {
         i {
@@ -37,6 +38,7 @@
   &--border-1 {
     animation-delay: 1s;
   }
+
   &--border-2 {
     animation-delay: 1.8s;
   }
