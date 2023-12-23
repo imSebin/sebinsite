@@ -1,7 +1,7 @@
 // THEME COLORS
-$indigo:      #996fe7;
-$indigo-light:#8773ce;
-$light-blue:  #3c95b1fa;
+$indigo:      #f7e5ff;
+$indigo-light:#6f38b6;
+$indigo-dark:  #e16df8fa;
 
 // WHITE AND GRAY COLORS
 $white:    #fff;
@@ -18,7 +18,8 @@ $black:    #000;
 
 
 $primary:   $indigo-light;
-$secondary: $light-blue;
+$secondary: $indigo-dark;
+$tertiary:  $indigo;
 
 // ACCORDION OVERRIDES
 $accordion-icon-color:         $primary;

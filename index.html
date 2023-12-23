@@ -8,8 +8,12 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/vendors/css/glightbox.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <script src="assets/js/bootstrap.bundle.js"></script>
+  <script src="assets/vendors/js/glightbox.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -44,14 +48,17 @@
   <section id="home" class="intro-section">
     <div class="container">
       <div class="row align-items-center text-white">
+        <!-- INTRO TEXT -->
         <div class="col-md-6 intros">
           <h1 class="display-2">
-            <div class="display-2--intro">I'm Sebin</div>
-            <div class="animated-heading">
+            <span class="display-2--intro">
+              I'm Sebin
+            </span>
+            <span class="animated-heading">
               <h1><span id="words">Welcome!</span></h1>
-            </div>
-            <span class="display-2--description">
-              I studied AI and I like making cool things with it.<br>
+            </span>
+            <span class="display-2--description lh-base">
+              I study AI and make cool things with it.<br>
               Explore the site to see interesting projects!
             </span>
           </h1>
@@ -62,10 +69,33 @@
             </span>
           </button>
         </div>
-        <div class="col-md-6"></div>
+        <!-- INTRO BODY VIDEO -->
+        <div class="col-md-6 intros text-end">
+          <div class="video-box">
+            <img src="images/artificial-intelligence-monochromatic.png" alt="video illustration" class="img-fluid">
+            <a href="#" class="glightbox position-absolute top-50 start-50 translate-middle">
+              <span>
+                <i class="fas fa-play-circle"></i>
+              </span>
+              <span class="border-animation border-animation--border-1"></span>
+              <span class="border-animation border-animation--border-2"></span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,122.7C384,128,480,96,576,96C672,96,768,128,864,138.7C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
   </section>
+
+  <!-- HTML VIDEO INSERT -->
+  <script type="text/javascript">
+    const lightbox = GLightbox({
+      'href': "https://www.youtube.com/watch?v=wCQoWAr_ZrU",
+      'type': 'video',
+      'source': 'youtube',
+      'width': '900'
+    })
+  </script>
 
   <!-- HTML TEXT CHANGE SCRIPT -->
   <script type="text/javascript">
