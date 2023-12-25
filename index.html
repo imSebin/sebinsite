@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <!-- START NAVBAR -->
+  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark menu shadow fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
@@ -47,7 +47,7 @@
     </div>
   </nav>
 
-  <!-- INTRO -->
+  <!-- HOME -->
   <section id="home" class="intro-section">
     <div class="container">
       <div class="row align-items-center text-white">
@@ -87,6 +87,8 @@
         </div>
       </div>
     </div>
+
+    <!-- WAVE TRANSITION -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
       <path fill="#ffffff" fill-opacity="1"
         d="M0,32L48,53.3C96,75,192,117,288,122.7C384,128,480,96,576,96C672,96,768,128,864,138.7C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
@@ -94,7 +96,45 @@
     </svg>
   </section>
 
-  <!-- HTML VIDEO INSERT -->
+  <!-- EDUCATION -->
+  <section id="education" class="education">
+    <div class="container">
+      <div class="row text-center">
+        <h4 class="fw-bold lead mb-3">Experienced in degree-related endeavors through</h4>
+        <div class="heading-line mb-5"></div>
+      </div>
+    </div>
+
+    <!-- EDUCATION CAROUSEL -->
+    <div class="edu-container">
+      <div class="carousel">
+        <button type="button" onclick="redirect('google.com')"><img src="images/know-hows/education-1.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-2.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-3.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-4.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-5.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-6.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-7.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-8.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-9.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-10.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-11.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-12.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-13.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-14.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-15.png"></button>
+        <button type="button" onclick=""><img src="images/know-hows/education-16.png"></button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function redirect(url) {
+      document.location.href = 'https://' + url
+    }
+  </script>
+
+  <!-- HTML VIDEO INSERT SCRIPT -->
   <script type="text/javascript">
     const lightbox = GLightbox({
       'href': "https://www.youtube.com/watch?v=wCQoWAr_ZrU",
