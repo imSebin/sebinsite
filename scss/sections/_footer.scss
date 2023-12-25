@@ -1,0 +1,45 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+
+.footer {
+  @include gradient;
+  
+  margin-top: 10rem;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background-color: $primary;
+  border-top-left-radius: 8rem;
+  font-size: 1rem;
+}
+
+.footer-row {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer-col {
+  flex-basis: 25%;
+  padding: 10px;
+}
+
+.footer-logo {
+  width: 8rem;
+  margin-top: 3rem;
+}
+
+.footer-col h3 {
+  width: fit-content;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.email-id {
+  width: fit-content;
+  border-bottom: 1px sold #ccc;
+  margin: 20px 0;
+}

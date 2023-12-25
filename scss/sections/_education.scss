@@ -4,6 +4,7 @@
   margin: auto;
   width: 100px;
   position: relative;
+  margin-bottom: 10rem;
   transform: perspective(1500px);
 
   @include media-breakpoint-down(sm) {
@@ -44,7 +45,8 @@
 }
 
 .carousel img:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  transform: translateY(-25px);
   transform: all 300ms;
 }
 

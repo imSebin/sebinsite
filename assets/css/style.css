@@ -11937,6 +11937,23 @@ textarea.form-control-lg {
   }
 }
 
+.footer-2 {
+  font-family: "Ubuntu", sans-serif;
+  color: #fff;
+}
+.footer-2--col1 {
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  line-height: 2.5rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 992px) {
+  .footer-2--col1 {
+    font-size: 1.5rem;
+  }
+}
+
 .heading-line::before {
   content: "";
   width: 14rem;
@@ -11969,7 +11986,7 @@ textarea.form-control-lg {
   font-weight: 600;
 }
 
-.intro-section {
+.home {
   background: linear-gradient(to right, rgba(111, 56, 182, 0.95), rgba(225, 109, 248, 0.95));
   padding: 10rem 0 0 0;
   width: 100%;
@@ -12005,6 +12022,7 @@ textarea.form-control-lg {
   margin: auto;
   width: 100px;
   position: relative;
+  margin-bottom: 10rem;
   transform: perspective(1500px);
 }
 @media (max-width: 575.98px) {
@@ -12048,7 +12066,8 @@ textarea.form-control-lg {
 }
 
 .carousel img:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  transform: translateY(-25px);
   transform: all 300ms;
 }
 
@@ -12208,6 +12227,47 @@ textarea.form-control-lg {
   to {
     transform: rotateY(0deg);
   }
+}
+.footer {
+  background: linear-gradient(to right, rgba(111, 56, 182, 0.95), rgba(225, 109, 248, 0.95));
+  margin-top: 10rem;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background-color: #6f38b6;
+  border-top-left-radius: 8rem;
+  font-size: 1rem;
+}
+
+.footer-row {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer-col {
+  flex-basis: 25%;
+  padding: 10px;
+}
+
+.footer-logo {
+  width: 8rem;
+  margin-top: 3rem;
+}
+
+.footer-col h3 {
+  width: fit-content;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.email-id {
+  width: fit-content;
+  border-bottom: 1px sold #ccc;
+  margin: 20px 0;
 }
 
 /*# sourceMappingURL=style.css.map */
