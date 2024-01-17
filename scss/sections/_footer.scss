@@ -3,43 +3,58 @@
 
 .footer {
   @include gradient;
-  
-  margin-top: 10rem;
+
+  padding: 30px 0px;
+  font-family: 'Play', sans-serif;
+  text-align: center;
+  font-weight: 600;
+}
+
+.footer .row-f {
   width: 100%;
-  position: relative;
-  bottom: 0;
-  background-color: $primary;
-  border-top-left-radius: 8rem;
-  font-size: 1rem;
+  margin: 1% 0%;
+  padding: 0.6% 0%;
+  color: $white;
+  font-size: 0.8rem;
 }
 
-.footer-row {
-  width: 85%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+.footer .row-f a {
+  text-decoration: none;
+  color: $white;
+  transition: 0.5s;
 }
 
-.footer-col {
-  flex-basis: 25%;
-  padding: 10px;
+.footer .row-f a:hover {
+  color: #fff;
 }
 
-.footer-logo {
-  width: 8rem;
-  margin-top: 3rem;
+.footer .row-f ul {
+  width: 100%;
 }
 
-.footer-col h3 {
-  width: fit-content;
-  margin-bottom: 1rem;
-  position: relative;
+.footer .row-f ul li {
+  display: inline-block;
+  margin: 0px 30px;
 }
 
-.email-id {
-  width: fit-content;
-  border-bottom: 1px sold #ccc;
-  margin: 20px 0;
+.footer .row-f a i {
+  font-size: 2rem;
+  margin: 0% 1%;
+}
+
+@media (max-width:720px) {
+  .footer {
+    text-align: left;
+    padding: 5%;
+  }
+
+  .footer .row-f ul li {
+    display: block;
+    margin: 10px 0px;
+    text-align: left;
+  }
+
+  .footer .row-f a i {
+    margin: 0% 3%;
+  }
 }

@@ -40,8 +40,8 @@
   transition: all 300ms;
   width: 100%;
   height: 100%;
-  -webkit-filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px 1px 0 black) drop-shadow(1px -1px 0 black) drop-shadow(-1px -1px 0 black);
-  filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px 1px 0 black) drop-shadow(1px -1px 0 black) drop-shadow(-1px -1px 0 black);
+  -webkit-filter: drop-shadow(1px 1px 0 $gray-800) drop-shadow(-1px 1px 0 $gray-800) drop-shadow(1px -1px 0 $gray-800) drop-shadow(-1px -1px 0 $gray-800);
+  filter: drop-shadow(1px 1px 0 $gray-800) drop-shadow(-1px 1px 0 $gray-800) drop-shadow(1px -1px 0 $gray-800) drop-shadow(-1px -1px 0 $gray-800);
 }
 
 .carousel img:hover {
