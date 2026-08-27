@@ -327,7 +327,7 @@ body.is-home .region-toast.is-on {
   opacity: 0;
   transform: translateY(28px);
   pointer-events: none;
-  transition: opacity 0.7s var(--ease) 0.15s, transform 0.7s var(--ease) 0.15s;
+  transition: transform 0.7s var(--ease);
 }
 
 body:not(.is-home) .stage {
