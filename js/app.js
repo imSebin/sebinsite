@@ -4,6 +4,7 @@ const PAGES = new Set(["about", "ai", "projects", "career", "contact"]);
 
 const body = document.body;
 const navbar = document.getElementById("navbar");
+const hotzone = document.getElementById("nav-hotzone");
 const logoHit = document.getElementById("logo-hit");
 const toast = document.getElementById("region-toast");
 const canvas = document.getElementById("brain");
@@ -15,10 +16,6 @@ function routeFromHash() {
   const raw = (location.hash || "#/").replace(/^#\/?/, "").split("/")[0];
   if (!raw) return "home";
   return PAGES.has(raw) ? raw : "home";
-}
-
-function colorFor(id) {
-  return REGIONS.find((r) => r.id === id)?.color || "#4de8ff";
 }
 
 const brain = new Brain(canvas, {
@@ -71,13 +68,23 @@ window.addEventListener("hashchange", () => {
   applyRoute(routeFromHash());
 });
 
-window.addEventListener("pointermove", (event) => {
+function onPointer(event) {
   brain.setPointer(event.clientX, event.clientY, true);
   syncNavReveal(event.clientY);
-});
+}
+
+window.addEventListener("pointermove", onPointer);
+window.addEventListener("mousemove", onPointer);
 
 window.addEventListener("pointerleave", () => {
   brain.setPointer(0, 0, false);
+});
+
+hotzone.addEventListener("pointerenter", () => {
+  if (routeFromHash() === "home") navbar.classList.add("is-revealed");
+});
+hotzone.addEventListener("mouseenter", () => {
+  if (routeFromHash() === "home") navbar.classList.add("is-revealed");
 });
 
 canvas.addEventListener("pointerdown", (event) => {

@@ -319,7 +319,7 @@ export class Brain {
     return {
       x: rect.left + rect.width / 2,
       y: rect.top + rect.height / 2,
-      unit: rect.width * 0.42,
+      unit: Math.max(22, rect.width * 0.48),
     };
   }
 
@@ -433,7 +433,7 @@ export class Brain {
     ctx.scale(breath, breath);
 
     const pointer = this.pointer.inside ? this._screenToBrain(this.pointer.x, this.pointer.y) : null;
-    const logoDim = 0.35 + 0.65 * view.label;
+    const logoDim = 0.92 + 0.08 * view.label;
 
     ctx.save();
     ctx.globalAlpha = 0.55 * logoDim;

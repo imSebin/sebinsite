@@ -88,32 +88,37 @@ body:not(.is-home) #brain {
   pointer-events: none;
 }
 
+.nav-hotzone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 28;
+  pointer-events: auto;
+}
+
+body:not(.is-home) .nav-hotzone {
+  display: none;
+}
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 30;
+  z-index: 40;
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  padding: 0 28px;
-  gap: 18px;
+  padding: 0 22px;
+  gap: 14px;
   background: transparent;
-  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  transition: opacity 0.45s var(--ease);
 }
 
-.navbar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 84px;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(7, 8, 13, 0.82), rgba(7, 8, 13, 0.28) 75%, transparent);
-  backdrop-filter: blur(10px);
-  mask-image: linear-gradient(90deg, transparent, #000 28px);
+body:not(.is-home) .navbar {
+  border-bottom: 1px solid rgba(173, 210, 255, 0.08);
 }
 
 body.is-home .navbar {
@@ -135,12 +140,13 @@ body.is-home .navbar:focus-within {
 }
 
 .logo-hit {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
   border-radius: 50%;
   position: relative;
   z-index: 2;
+  box-shadow: inset 0 0 0 1px rgba(77, 232, 255, 0.28), 0 0 22px rgba(77, 232, 255, 0.12);
 }
 
 .logo-hit:focus-visible {
@@ -148,20 +154,30 @@ body.is-home .navbar:focus-within {
   outline-offset: 3px;
 }
 
+body.is-home .logo-hit {
+  box-shadow: none;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-left: 8px;
-  flex: 1;
+  gap: 2px;
+  margin-left: 6px;
+  padding: 4px;
+  position: relative;
+  z-index: 2;
+  background: rgba(10, 14, 22, 0.82);
+  border: 1px solid rgba(173, 210, 255, 0.14);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
 }
 
 .nav-links a {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #d7e2f2;
   padding: 10px 12px;
   border-radius: 999px;
   transition: color 0.25s ease, background 0.25s ease;
@@ -179,12 +195,27 @@ body.is-home .navbar:focus-within {
 .nav-links a[data-page="career"].is-active { color: var(--amber); }
 .nav-links a[data-page="contact"].is-active { color: var(--mint); }
 
+.wordmark {
+  font-family: Syne, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.03em;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+body.is-home .wordmark,
+body.is-home .nav-meta {
+  display: none;
+}
+
 .nav-meta {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
+  margin-left: auto;
 }
 
 .landing {
@@ -472,7 +503,8 @@ body:not(.is-home) .stage {
     padding: 0 14px;
   }
 
-  .nav-meta {
+  .nav-meta,
+  .wordmark {
     display: none;
   }
 
