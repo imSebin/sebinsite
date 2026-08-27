@@ -8,6 +8,7 @@ const hotzone = document.getElementById("nav-hotzone");
 const logoHit = document.getElementById("logo-hit");
 const toast = document.getElementById("region-toast");
 const canvas = document.getElementById("brain");
+const stage = document.getElementById("stage");
 const regionHits = [...document.querySelectorAll("#region-hits button")];
 const navLinks = [...document.querySelectorAll(".nav-links a")];
 
@@ -36,6 +37,11 @@ const brain = new Brain(canvas, {
     toast.classList.add("is-on");
   },
   onFrame: (view) => {
+    if (!reduced) {
+      stage.style.opacity = routeFromHash() === "home"
+        ? "0"
+        : String(Math.min(1, (1 - view.label) * 1.45));
+    }
     if (routeFromHash() !== "home" || view.label < 0.2) {
       regionHits.forEach((btn) => {
         btn.style.opacity = "0";
