@@ -8,6 +8,7 @@ const hotzone = document.getElementById("nav-hotzone");
 const logoHit = document.getElementById("logo-hit");
 const toast = document.getElementById("region-toast");
 const canvas = document.getElementById("brain");
+const regionHits = [...document.querySelectorAll("#region-hits button")];
 const navLinks = [...document.querySelectorAll(".nav-links a")];
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,6 +34,28 @@ const brain = new Brain(canvas, {
     toast.textContent = region?.label || "";
     toast.style.color = region?.color || "#fff";
     toast.classList.add("is-on");
+  },
+  onFrame: (view) => {
+    if (routeFromHash() !== "home" || view.label < 0.2) {
+      regionHits.forEach((btn) => {
+        btn.style.opacity = "0";
+        btn.style.pointerEvents = "none";
+      });
+      return;
+    }
+    regionHits.forEach((btn) => {
+      const region = REGIONS.find((r) => r.id === btn.dataset.page);
+      if (!region) return;
+      const x = view.x + region.x * view.unit;
+      const y = view.y + region.y * view.unit;
+      const size = Math.max(88, view.unit * 0.42);
+      btn.style.width = `${size}px`;
+      btn.style.height = `${size}px`;
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    });
   },
 });
 
@@ -60,7 +83,7 @@ let lastY = 0;
 function syncNavReveal(clientY) {
   lastY = clientY;
   if (routeFromHash() !== "home") return;
-  const nearTop = clientY < 88;
+  const nearTop = clientY < 120;
   navbar.classList.toggle("is-revealed", nearTop);
 }
 
@@ -90,6 +113,23 @@ hotzone.addEventListener("mouseenter", () => {
 canvas.addEventListener("pointerdown", (event) => {
   if (routeFromHash() !== "home") return;
   brain.handleClick(event.clientX, event.clientY);
+});
+
+regionHits.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (routeFromHash() !== "home") return;
+    const id = btn.dataset.page;
+    const region = REGIONS.find((r) => r.id === id);
+    if (!region) return;
+    brain.lockedRegion = id;
+    brain._burst(region);
+    location.hash = `#/${id}`;
+  });
+  btn.addEventListener("pointerenter", () => {
+    brain.hoverRegion = btn.dataset.page;
+    brain.onHoverRegion?.(btn.dataset.page);
+  });
 });
 
 navbar.addEventListener("pointerenter", () => {

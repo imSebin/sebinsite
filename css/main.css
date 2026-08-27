@@ -93,13 +93,44 @@ body:not(.is-home) #brain {
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 88px;
   z-index: 28;
   pointer-events: auto;
 }
 
 body:not(.is-home) .nav-hotzone {
   display: none;
+}
+
+body.is-home:has(.nav-hotzone:hover) .navbar,
+body.is-home:has(.navbar:hover) .navbar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.region-hits {
+  position: fixed;
+  inset: 0;
+  z-index: 29;
+  pointer-events: none;
+}
+
+body:not(.is-home) .region-hits {
+  display: none;
+}
+
+.region-hits button {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
 }
 
 .navbar {

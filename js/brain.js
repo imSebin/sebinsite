@@ -82,12 +82,13 @@ function buildHemispherePath(cx, phase) {
 }
 
 export class Brain {
-  constructor(canvas, { getLogoRect, onNavigate, onHoverRegion } = {}) {
+  constructor(canvas, options = {}) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d", { alpha: true });
-    this.getLogoRect = getLogoRect;
-    this.onNavigate = onNavigate;
-    this.onHoverRegion = onHoverRegion;
+    this.getLogoRect = options.getLogoRect;
+    this.onNavigate = options.onNavigate;
+    this.onHoverRegion = options.onHoverRegion;
+    this.onFrame = options.onFrame;
     this.dpr = 1;
     this.tHome = 1;
     this.fromHome = 1;
@@ -128,6 +129,7 @@ export class Brain {
       this.lastTs = ts;
       this._tick(ts, dt);
       this._draw(ts);
+      this.onFrame?.(this._view());
       this.raf = requestAnimationFrame(loop);
     };
     this.raf = requestAnimationFrame(loop);
@@ -169,12 +171,51 @@ export class Brain {
     if (this.tHome < 0.55) return false;
     const local = this._screenToBrain(clientX, clientY);
     if (!local) return false;
-    const region = this._hitRegion(local.x, local.y);
+    const region = this._pickRegion(local.x, local.y);
     if (!region) return false;
     this.lockedRegion = region.id;
     this._burst(region);
     this.onNavigate?.(region.id);
     return true;
+  }
+
+  getView() {
+    return this._view();
+  }
+
+  _labelOffset(region) {
+    return {
+      x: region.x < -0.1 ? -0.22 : region.x > 0.1 ? 0.22 : 0,
+      y: region.y < 0 ? -0.18 : 0.2,
+    };
+  }
+
+  _pickRegion(bx, by) {
+    let best = null;
+    let bestD = 0.52;
+    for (const region of REGIONS) {
+      const off = this._labelOffset(region);
+      const dHub = Math.hypot(bx - region.x, by - region.y);
+      const dLab = Math.hypot(bx - (region.x + off.x), by - (region.y + off.y));
+      const d = Math.min(dHub, dLab);
+      if (d < bestD) {
+        bestD = d;
+        best = region;
+      }
+    }
+    if (best) return best;
+    if (this.hoverRegion) return REGIONS.find((r) => r.id === this.hoverRegion) || null;
+    if (!inBrain(bx, by)) return null;
+    let nearest = this.nodes[0];
+    let distN = Infinity;
+    for (const node of this.nodes) {
+      const d = Math.hypot(node.x - bx, node.y - by);
+      if (d < distN) {
+        distN = d;
+        nearest = node;
+      }
+    }
+    return REGIONS.find((r) => r.id === nearest.region) || null;
   }
 
   _buildNetwork() {
@@ -344,34 +385,6 @@ export class Brain {
     };
   }
 
-  _hitRegion(bx, by) {
-    if (!inBrain(bx, by) && this.hoverRegion == null) {
-      let best = null;
-      let bestD = 0.22;
-      for (const region of REGIONS) {
-        const d = Math.hypot(bx - region.x, by - region.y);
-        if (d < bestD) {
-          bestD = d;
-          best = region;
-        }
-      }
-      return best;
-    }
-    if (this.hoverRegion) {
-      return REGIONS.find((r) => r.id === this.hoverRegion) || null;
-    }
-    let best = null;
-    let bestD = 0.34;
-    for (const region of REGIONS) {
-      const d = Math.hypot(bx - region.x, by - region.y);
-      if (d < bestD) {
-        bestD = d;
-        best = region;
-      }
-    }
-    return best;
-  }
-
   _tick(ts, dt) {
     if (this.animating) {
       const p = Math.min(1, (ts - this.animStart) / this.animDur);
@@ -402,10 +415,8 @@ export class Brain {
     if (this.pointer.inside && this.tHome > 0.35) {
       const local = this._screenToBrain(this.pointer.x, this.pointer.y);
       if (local) {
-        const region = this._hitRegion(local.x, local.y);
-        if (region && (inBrain(local.x, local.y) || Math.hypot(local.x - region.x, local.y - region.y) < 0.28)) {
-          nextHover = region.id;
-        }
+        const region = this._pickRegion(local.x, local.y);
+        if (region) nextHover = region.id;
       }
     }
     if (nextHover !== this.hoverRegion) {
@@ -448,8 +459,8 @@ export class Brain {
     ctx.restore();
 
     ctx.save();
-    ctx.fillStyle = "rgba(8, 12, 20, 0.72)";
-    ctx.strokeStyle = "rgba(140, 210, 255, 0.18)";
+    ctx.fillStyle = view.label < 0.45 ? "rgba(12, 28, 42, 0.7)" : "rgba(8, 12, 20, 0.72)";
+    ctx.strokeStyle = view.label < 0.45 ? "rgba(77, 232, 255, 0.7)" : "rgba(140, 210, 255, 0.18)";
     ctx.lineWidth = 0.012;
     ctx.fill(this.leftPath);
     ctx.fill(this.rightPath);
@@ -522,7 +533,8 @@ export class Brain {
         glowAmt += prox * 0.7;
         extra += prox * 0.01;
       }
-      const r = node.radius * (node.hub ? 1.15 : 1) * pulse + extra;
+      const logoBoost = 1 + (1 - view.label) * 2.4;
+      const r = (node.radius * (node.hub ? 1.15 : 1) * pulse + extra) * logoBoost;
       if (glowAmt > 0.2) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, r * 3.4, 0, Math.PI * 2);
